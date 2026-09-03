@@ -1,0 +1,30 @@
+# BongoStore BD - Apache / InfinityFree Configuration
+
+DirectoryIndex index.php index.html
+
+# Enable UTF-8 encoding
+AddDefaultCharset UTF-8
+
+# Protect sensitive files and directories
+<FilesMatch "^(database\.sql|\.env|\.git|composer\.json)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Error handling
+ErrorDocument 404 /index.php
+
+# PHP compatibility flags (if supported)
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 16M
+    php_value post_max_size 16M
+    php_value default_charset "UTF-8"
+</IfModule>
+<IfModule mod_php8.c>
+    php_value upload_max_filesize 16M
+    php_value post_max_size 16M
+    php_value default_charset "UTF-8"
+</IfModule>
